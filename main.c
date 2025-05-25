@@ -21,6 +21,5 @@ void random_generator(){
 
 int main(){
     random_generator();
-    jorge();
 return 0;
 }
