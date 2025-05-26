@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <time.h>
 #include "funcoes/insertion_sort/insertion_sort.h"
-#include "funcoes/metodoOrdenacao/quick_sort.h"
+#include "funcoes/metodoOrdenacao/bubble_sort.h"
 
 void random_generator(int linhas, int colunas, int number[linhas][colunas]) {
     int i, j;
