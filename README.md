@@ -4,7 +4,7 @@ Este projeto implementa diferentes algoritmos de ordenação em linguagem C, com
 
 ## 📁 Estrutura do Projeto
 
-AlgoritmosOrdenacao/
+<p>AlgoritmosOrdenacao/</p>
 ├── CMakeLists.txt
 ├── main.c
 ├── funcoes/
