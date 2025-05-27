@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <time.h>
 #include "funcoes/insertion_sort/insertion_sort.h"
-#include "funcoes/metodoOrdenacao/bubble_sort.h"
+#include "funcoes/merge_sort/merge_sort.h"
 
 void random_generator(int linhas, int colunas, int number[linhas][colunas]) {
     int i, j;
@@ -12,17 +12,16 @@ void random_generator(int linhas, int colunas, int number[linhas][colunas]) {
     for (i = 0; i < linhas; i++){
         for (j = 0; j < colunas; j++) {
             number[i][j] = rand() % 1000;
-        };
-    };
+        }
+    }
 
     for (i = 0; i < linhas; i++){
         printf(" %d -", i+1);
         for (j = 0; j < colunas; j++) {
             printf("%4d ", number[i][j]);
-        };
+        }
         printf("\n\n");
-    };
-
+    }
 }
 
 int main(){
@@ -32,16 +31,17 @@ int main(){
     int colunas = 10;
     int number[linhas][colunas];
 
-
-
     do {
         printf("\n");
         printf("Qual metodo de ordenacao gostaria de usar ?\n");
         printf("0 - Sair do Programa.\n");
         printf("1 - Insertion Sort Crescente.\n");
         printf("2 - Insertion Sort Decrescente.\n");
+        printf("3 - Merge Sort Crescente.\n");
+        printf("4 - Merge Sort Decrescente.\n");
         scanf("%d", &op);
-        if (op>=1 && op<=4) {
+
+        if (op >= 1 && op <= 4) {
             printf("\n\n");
             printf("Array inicial: \n\n");
             printf("-------------------------------------------------\n\n");
@@ -50,29 +50,28 @@ int main(){
         }
 
         if (op == 1) {
-
             for (i = 0; i < linhas; i++) {
                 insertion_sort_cres(number[i], colunas);
             }
-
-        }else if(op ==2){
-
+        } else if (op == 2) {
             for (i = 0; i < linhas; i++) {
                 insertion_sort_desc(number[i], colunas);
             }
-
-        }else if (op == 0) {
-
-            printf("Saindo do programa . . .");
-
-        }else {
-
-            printf("Por favor digite um opcao valida!");
-
+        } else if (op == 3) {
+            for (i = 0; i < linhas; i++) {
+                merge_sort_cres(number[i], colunas);
+            }
+        } else if (op == 4) {
+            for (i = 0; i < linhas; i++) {
+                merge_sort_desc(number[i], colunas);
+            }
+        } else if (op == 0) {
+            printf("Saindo do programa . . .\n");
+        } else {
+            printf("Por favor digite uma opcao valida!\n");
         }
 
-
-        if (op>=1 && op<=4) {
+        if (op >= 1 && op <= 4) {
             printf("\n\n");
             printf("-------------------------------------------------\n\n");
             printf("Matriz com linhas ordenadas: \n\n");
@@ -86,9 +85,7 @@ int main(){
             printf("-------------------------------------------------\n");
         }
 
+    } while (op != 0);
 
-    }while (op!= 0);
-
-
-return 0;
+    return 0;
 }
