@@ -15,10 +15,6 @@ AlgoritmosOrdenacao/
 │ ├── merge_sort.c
 │ └── merge_sort.h
 
-markdown
-Copiar
-Editar
-
 ## 🔧 Algoritmos Implementados
 
 - [x] Insertion Sort Crescente
@@ -37,7 +33,7 @@ Editar
 1. Clone o repositório:
    ```bash
    git clone https://github.com/seu-usuario/AlgoritmosOrdenacao.git
-Abra o projeto no CLion. O CMake deve reconhecer automaticamente os arquivos.
+Abra o projeto no CLion. O CMake deve reconhecer automaticamente os arquivos. (Caso não reconhecer apaga o cmake.text e o debug, ae pede pra ele criar um novo)
 
 Selecione a opção de build e execute como uma CMake Application.
 
@@ -45,14 +41,12 @@ Caso veja erro de undefined reference, verifique se todos os arquivos .c estão 
 
 Executando via terminal
 bash
-Copiar
-Editar
+
 gcc main.c funcoes/insertion_sort/insertion_sort.c funcoes/merge_sort/merge_sort.c -o ordenar
 ./ordenar
+
 📊 Exemplo de Execução
-text
-Copiar
-Editar
+
 Qual metodo de ordenacao gostaria de usar ?
 0 - Sair do Programa.
 1 - Insertion Sort Crescente.
