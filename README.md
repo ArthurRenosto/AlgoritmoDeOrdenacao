@@ -5,15 +5,15 @@ Este projeto implementa diferentes algoritmos de ordenação em linguagem C, com
 ## 📁 Estrutura do Projeto
 
 <p>AlgoritmosOrdenacao/</p>
-<p├── CMakeLists.txt</p>
-<p├── main.c</p>
-<p├── funcoes/</p>
-<p│ ├── insertion_sort/</p>
-<p│ │ ├── insertion_sort.c</p>
-<p│ │ └── insertion_sort.h</p>
-<p│ └── merge_sort/</p>
-<p│ ├── merge_sort.c</p>
-<p│ └── merge_sort.h</p>
+<p>├── CMakeLists.txt </p>
+<p>├── main.c</p>
+<p>├── funcoes/</p>
+<p>│ ├── insertion_sort/</p>
+<p>│ │ ├── insertion_sort.c</p>
+<p>│ │ └── insertion_sort.h</p>
+<p>│ └── merge_sort/</p>
+<p>│ ├── merge_sort.c</p>
+<p>│ └── merge_sort.h</p>
 
 ## 🔧 Algoritmos Implementados
 
