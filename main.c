@@ -6,7 +6,7 @@
 #include "funcoes/merge_sort/merge_sort.h"          // Importa os protótipos do merge sort
 
 // Função que gera números aleatórios e preenche uma matriz
-void random_generator(int linhas, int colunas, int number[linhas][colunas]) {
+void random_generator(int linhas, int colunas, int **number) {
     int i, j;
 
     srand(time(NULL));  // Inicializa o gerador de números aleatórios com base no tempo atual
@@ -33,8 +33,15 @@ int main(){
     int i, j;                             // Contadores para loops
     int linhas = 2;                       // Número de linhas da matriz
     int colunas = 10;                     // Número de colunas da matriz
-    int number[linhas][colunas];          // Matriz de inteiros
+    int **number;
 
+    // Alocação dinâmica da matriz
+    number = (int **)malloc(linhas * sizeof(int *));
+    for (i = 0; i < linhas; i++) {
+        number[i] = (int *)malloc(colunas * sizeof(int));
+    }
+
+    char buffer[32];
     do {
         // Menu de seleção de método de ordenação
         printf("\n");
@@ -44,10 +51,24 @@ int main(){
         printf("2 - Insertion Sort Decrescente.\n");
         printf("3 - Merge Sort Crescente.\n");
         printf("4 - Merge Sort Decrescente.\n");
-        scanf("%d", &op);  // Lê a opção do usuário
+        printf("5 - Insertion Sort Crescente (Lista Encadeada).\n");
+        printf("6 - Insertion Sort Decrescente (Lista Encadeada).\n");
+        printf("7 - Merge Sort Crescente (Lista Encadeada).\n");
+        printf("8 - Merge Sort Decrescente (Lista Encadeada).\n");
+        printf("Digite sua opcao: ");
+        fflush(stdout); // Garante que o menu seja exibido antes da entrada
+        if (!fgets(buffer, sizeof(buffer), stdin)) {
+            printf("Erro de leitura. Saindo...\n");
+            break;
+        }
+        if (sscanf(buffer, "%d", &op) != 1) {
+            printf("Por favor, digite um numero valido!\n");
+            op = -1;
+            continue;
+        }
 
         // Gera e imprime a matriz aleatória se a opção for válida
-        if (op >= 1 && op <= 4) {
+        if (op >= 1 && op <= 8) {
             printf("\n\n");
             printf("Array inicial: \n\n");
             printf("-------------------------------------------------\n\n");
@@ -58,19 +79,35 @@ int main(){
         // Executa o método de ordenação conforme a escolha do usuário
         if (op == 1) {
             for (i = 0; i < linhas; i++) {
-                insertion_sort_cres(number[i], colunas);  // Ordena linha por linha em ordem crescente
+                insertion_sort_cres(number[i], colunas);
             }
         } else if (op == 2) {
             for (i = 0; i < linhas; i++) {
-                insertion_sort_desc(number[i], colunas);  // Ordem decrescente com insertion sort
+                insertion_sort_desc(number[i], colunas);
             }
         } else if (op == 3) {
             for (i = 0; i < linhas; i++) {
-                merge_sort_cres(number[i], colunas);      // Ordem crescente com merge sort
+                merge_sort_cres(number[i], colunas);
             }
         } else if (op == 4) {
             for (i = 0; i < linhas; i++) {
-                merge_sort_desc(number[i], colunas);      // Ordem decrescente com merge sort
+                merge_sort_desc(number[i], colunas);
+            }
+        } else if (op == 5) {
+            for (i = 0; i < linhas; i++) {
+                insertion_sort_cres_lista(number[i], colunas);
+            }
+        } else if (op == 6) {
+            for (i = 0; i < linhas; i++) {
+                insertion_sort_desc_lista(number[i], colunas);
+            }
+        } else if (op == 7) {
+            for (i = 0; i < linhas; i++) {
+                merge_sort_cres_lista(number[i], colunas);
+            }
+        } else if (op == 8) {
+            for (i = 0; i < linhas; i++) {
+                merge_sort_desc_lista(number[i], colunas);
             }
         } else if (op == 0) {
             printf("Saindo do programa . . .\n");          // Finaliza o programa
@@ -79,7 +116,7 @@ int main(){
         }
 
         // Exibe a matriz ordenada (se alguma ordenação foi feita)
-        if (op >= 1 && op <= 4) {
+        if (op >= 1 && op <= 8) {
             printf("\n\n");
             printf("-------------------------------------------------\n\n");
             printf("Matriz com linhas ordenadas: \n\n");
@@ -93,7 +130,15 @@ int main(){
             printf("-------------------------------------------------\n");
         }
 
-    } while (op != 0);  // Repete até que o usuário escolha sair
+    } while (op != 0);
+
+    // ===== INÍCIO DAS ALTERAÇÕES =====
+    // Liberação da memória alocada
+    for (i = 0; i < linhas; i++) {
+        free(number[i]);
+    }
+    free(number);
+    // ===== FIM DAS ALTERAÇÕES =====
 
     return 0;
 }
