@@ -12,7 +12,8 @@ static Node* merge_sort_lista_desc(Node* head);
 
 // ---------- Funções auxiliares ---------- //
 
-// Merge crescente
+// Função que faz o merge (junção ordenada) de duas partes do vetor em ordem crescente
+// Parâmetros: arr = vetor, inicio = início do trecho, meio = meio, fim = fim do trecho
 void merge_cres(int arr[], int inicio, int meio, int fim) {
     int i = inicio;
     int j = meio + 1;
@@ -54,7 +55,8 @@ void merge_cres(int arr[], int inicio, int meio, int fim) {
     free(temp);
 }
 
-// Merge decrescente
+// Função que faz o merge (junção ordenada) de duas partes do vetor em ordem decrescente
+// Parâmetros: arr = vetor, inicio = início do trecho, meio = meio, fim = fim do trecho
 void merge_desc(int arr[], int inicio, int meio, int fim) {
     int i = inicio;
     int j = meio + 1;
@@ -98,6 +100,8 @@ void merge_desc(int arr[], int inicio, int meio, int fim) {
 
 // ---------- Funções recursivas ---------- //
 
+// Função recursiva do Merge Sort crescente
+// Divide o vetor em partes menores e aplica o merge_cres para ordenar
 void merge_sort_rec_cres(int arr[], int inicio, int fim) {
     if (inicio < fim) {
         int meio = (inicio + fim) / 2;
@@ -109,6 +113,8 @@ void merge_sort_rec_cres(int arr[], int inicio, int fim) {
     }
 }
 
+// Função recursiva do Merge Sort decrescente
+// Divide o vetor em partes menores e aplica o merge_desc para ordenar
 void merge_sort_rec_desc(int arr[], int inicio, int fim) {
     if (inicio < fim) {
         int meio = (inicio + fim) / 2;

@@ -6,6 +6,10 @@
 #include "funcoes/merge_sort/merge_sort.h"          // Importa os protótipos do merge sort
 
 // Função que gera números aleatórios e preenche uma matriz
+// Parâmetros:
+//   linhas: número de linhas da matriz
+//   colunas: número de colunas da matriz
+//   number: matriz a ser preenchida
 void random_generator(int linhas, int colunas, int **number) {
     int i, j;
 
@@ -35,7 +39,7 @@ int main(){
     int colunas = 10;                     // Número de colunas da matriz
     int **number;
 
-    // Alocação dinâmica da matriz
+    // Alocação dinâmica da matriz de inteiros (linhas x colunas)
     number = (int **)malloc(linhas * sizeof(int *));
     for (i = 0; i < linhas; i++) {
         number[i] = (int *)malloc(colunas * sizeof(int));
@@ -43,7 +47,7 @@ int main(){
 
     char buffer[32];
     do {
-        // Menu de seleção de método de ordenação
+        // Exibe o menu de seleção de método de ordenação
         printf("\n");
         printf("Qual metodo de ordenacao gostaria de usar ?\n");
         printf("0 - Sair do Programa.\n");
@@ -67,7 +71,7 @@ int main(){
             continue;
         }
 
-        // Gera e imprime a matriz aleatória se a opção for válida
+        // Gera e imprime a matriz aleatória se a opção for válida (1 a 8)
         if (op >= 1 && op <= 8) {
             printf("\n\n");
             printf("Array inicial: \n\n");
@@ -77,37 +81,38 @@ int main(){
         }
 
         // Executa o método de ordenação conforme a escolha do usuário
+        // Cada opção chama uma função de ordenação diferente, para cada linha da matriz
         if (op == 1) {
             for (i = 0; i < linhas; i++) {
-                insertion_sort_cres(number[i], colunas);
+                insertion_sort_cres(number[i], colunas); // Insertion Sort Crescente
             }
         } else if (op == 2) {
             for (i = 0; i < linhas; i++) {
-                insertion_sort_desc(number[i], colunas);
+                insertion_sort_desc(number[i], colunas); // Insertion Sort Decrescente
             }
         } else if (op == 3) {
             for (i = 0; i < linhas; i++) {
-                merge_sort_cres(number[i], colunas);
+                merge_sort_cres(number[i], colunas);     // Merge Sort Crescente
             }
         } else if (op == 4) {
             for (i = 0; i < linhas; i++) {
-                merge_sort_desc(number[i], colunas);
+                merge_sort_desc(number[i], colunas);     // Merge Sort Decrescente
             }
         } else if (op == 5) {
             for (i = 0; i < linhas; i++) {
-                insertion_sort_cres_lista(number[i], colunas);
+                insertion_sort_cres_lista(number[i], colunas); // Insertion Sort Crescente (Lista)
             }
         } else if (op == 6) {
             for (i = 0; i < linhas; i++) {
-                insertion_sort_desc_lista(number[i], colunas);
+                insertion_sort_desc_lista(number[i], colunas); // Insertion Sort Decrescente (Lista)
             }
         } else if (op == 7) {
             for (i = 0; i < linhas; i++) {
-                merge_sort_cres_lista(number[i], colunas);
+                merge_sort_cres_lista(number[i], colunas);     // Merge Sort Crescente (Lista)
             }
         } else if (op == 8) {
             for (i = 0; i < linhas; i++) {
-                merge_sort_desc_lista(number[i], colunas);
+                merge_sort_desc_lista(number[i], colunas);     // Merge Sort Decrescente (Lista)
             }
         } else if (op == 0) {
             printf("Saindo do programa . . .\n");          // Finaliza o programa
@@ -132,13 +137,11 @@ int main(){
 
     } while (op != 0);
 
-    // ===== INÍCIO DAS ALTERAÇÕES =====
-    // Liberação da memória alocada
+    // Liberação da memória alocada para a matriz
     for (i = 0; i < linhas; i++) {
         free(number[i]);
     }
     free(number);
-    // ===== FIM DAS ALTERAÇÕES =====
 
     return 0;
 }
